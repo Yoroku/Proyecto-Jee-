@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    <title>Inicio</title>
+    <h:outputStylesheet library="css" name="estilos.css"/>
+    <style>
+    h1 {
+	  color: #05082b;	
+	  font-weight: normal;
+	  font-size: 40px;
+	  font-family: Copperplate, Papyrus, fantasy;
+	  text-transform: uppercase;
+	  text-align:center;
+	} 
+    </style>
+    </h:head>
+
+    <h:body styleClass="body">
+     <h1>Gestión de Ferreteria</h1>
+    <div class="card">
+	<h:form>  
+    <p:growl id="messages"/>
+    <p:menubar styleClass="menubar">
+    	<p:menuitem value="Inicio" url="http://localhost:8080/gestion.ferreteria/index.xhtml" icon="pi pi-home" />
+ 		<p:menuitem value="Productos" url="http://localhost:8080/gestion.ferreteria/productos.xhtml" icon="pi pi-th-large" />
+ 		<p:menuitem value="Usuarios" url="http://localhost:8080/gestion.ferreteria/usuarios.xhtml" icon="pi pi-users" />
+        <f:facet name="options">
+	         <p:commandButton type="button" value="Logout"/>
+        </f:facet>
+    </p:menubar>
+</h:form>
+    </div>
+    <div class="card">
+    <p:galleria value="#{imagesView.images}" var="image" panelWidth="1250" panelHeight="400" showCaption="true">
+        <p:graphicImage value="resources/images/herramientas/#{image}" style="width: 1250px; height: 400px;" alt="Variedad de Herramientas #{image}"
+                        title="#{image}"/>
+	    </p:galleria>
+	</div>
+    <h2>Marcas Trabajadas</h2>
+   <div class="card">
+    <h:form id="form">
+       <p:accordionPanel multiple="true">
+        <p:tab title="Makita">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage value="resources/images/makita.jpg" />   
+                <h:outputText
+                    value="La compañía se estableció en 1915 como Makita Electric Works. A lo largo de su historia, el fabricante ha introducido varias herramientas eléctricas muy populares, incluido el taladro a batería 6500D (1969), el taladro destornillador recargable 6213D (1997), y el modelo TD130D (2005).
+                    Makita ha estado usando la misma marca por un período de tiempo bastante largo. Presenta el nombre de la empresa en rojo sobre un fondo blanco. También es posible un esquema de colores invertido." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Bosch">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage style="width: 400px; height: 174px;" value="resources/images/Bosch.png" />
+                <h:outputText value="La marca de electrodomésticos BOSCH es una marca alemana de alta calidad, presente principalmente en grandes electrodomésticos. Los productos Bosch son famosos por su robustez, ya que han sido probados en condiciones extremas. La marca Bosch es una de las marcas líderes en electrodomésticos." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Black And Decker">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage style="width: 400px; height: 174px;" value="resources/images/black-decker.png" />
+                <h:outputText value="BLACK+DECKER™ es el productor de herramientas eléctricas y accesorios más grande del mundo. Sus productos en la gama del pequeño electrodoméstico es líder en Estados Unidos, y en la indústria global del pequeño aparato electrodoméstico.
+                Hoy, BLACK+DECKER™ es una empresa multinacional que fabrica productos de calidad tanto para el hogar como para profesionales. Con negocio en aproximadamente 100 países, BLACK+DECKER™ es líder de mercado es sus diferentes gamas de productos." />
+            </h:panelGrid>
+        </p:tab>
+    </p:accordionPanel>
+    </h:form>
+</div>
+    </h:body>
+</html>

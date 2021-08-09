@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+    <title>Inicio</title>
+    <h:outputStylesheet library="css" name="estilos.css"/>
+    <style>
+    h1 {
+	  color: #05082b;	
+	  font-weight: normal;
+	  font-size: 40px;
+	  font-family: Copperplate, Papyrus, fantasy;
+	  text-transform: uppercase;
+	  text-align:center;
+	} 
+    </style>
+    </h:head>
+
+    <h:body styleClass="body">
+     <h1>Gestión de Ferreteria</h1>
+    <div class="card">
+	<h:form>  
+    <p:growl id="messages"/>
+    <p:menubar styleClass="menubar">
+    	<p:menuitem value="Inicio" url="http://localhost:8080/gestion.ferreteria/index.xhtml" icon="pi pi-home" />
+ 		<p:menuitem value="Productos" url="http://localhost:8080/gestion.ferreteria/productos.xhtml" icon="pi pi-th-large" />
+ 		<p:menuitem value="Usuarios" url="http://localhost:8080/gestion.ferreteria/usuarios.xhtml" icon="pi pi-users" />
+        <f:facet name="options">
+	         <p:commandButton type="button" value="Logout"/>
+        </f:facet>
+    </p:menubar>
+</h:form>
+    </div>
+    <div class="card">
+    <h:panelGrid columns="1" cellpadding="5">
+	    <p:commandButton value="Agregar Usuario" type="button" onclick="PF('dlg2').show();" />  
+	</h:panelGrid>
+
+    <h:form id="formTabla">
+     <p:dialog header="Agregar Usuarios" widgetVar="dlg2" modal="true">
+	    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+	    <p:outputLabel for="@next" value="RUT:" />
+		<p:inputText id="rut" value="" style="width:250px"/>
+        <p:outputLabel for="@next" value="NOMBRE:" />
+		<p:inputText id="nombre" value="" style="width:250px"/>
+		<p:outputLabel for="@next" value="APELLIDO:" />
+		<p:inputText id="apellido" value="" style="width:250px"/>
+		<p:outputLabel for="@next" value="ROL:" />
+		<p:inputText id="rol" value="" style="width:250px"/>
+		<p:outputLabel for="@next" value="CARGO:" />
+		<p:inputText id="cargo" value="" style="width:250px"/>
+		
+		<h:commandButton id="idGuardar" value="Agregar"/>
+        </h:panelGrid>
+	</p:dialog> 
+	
+        <p:dataTable id="tablaUsuarios">
+            <f:facet name="header">
+                Lista de Usuarios
+            </f:facet>
+
+            <p:column headerText="Rut">
+                <h:outputText value="" />
+            </p:column>
+            <p:column headerText="Nombre">
+                <h:outputText value="" />
+            </p:column>
+            <p:column headerText="Apellido">
+                <h:outputText value="" />
+            </p:column>
+            <p:column headerText="Rol">
+                <h:outputText value="" />
+            </p:column>
+            <p:column headerText="Cargo">
+                <h:outputText value="" />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</div>
+    </h:body>
+</html>

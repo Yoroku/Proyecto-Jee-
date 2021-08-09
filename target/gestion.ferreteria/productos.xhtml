@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+    <title> Tabla Productos</title>
+    <h:outputStylesheet library="css" name="estilos.css"/>
+    <style>
+   h1 {
+	  color: #05082b;	
+	  font-weight: normal;
+	  font-size: 40px;
+	  font-family: Copperplate, Papyrus, fantasy;
+	  text-transform: uppercase;
+	  text-align:center;
+	} 
+    </style>
+    </h:head>
+	
+    <h:body styleClass="body">
+    <h1>Gestión de Ferreteria</h1>
+    <div class="card">
+	<h:form>  
+    <p:growl id="messages"/>
+    <p:menubar styleClass="menubar">
+    	<p:menuitem value="Inicio" url="http://localhost:8080/gestion.ferreteria/index.xhtml" icon="pi pi-home" />
+ 		<p:menuitem value="Productos" url="http://localhost:8080/gestion.ferreteria/productos.xhtml" icon="pi pi-th-large" />
+ 		<p:menuitem value="Usuarios" url="http://localhost:8080/gestion.ferreteria/usuarios.xhtml" icon="pi pi-users" />
+        <f:facet name="options">
+	         <p:commandButton type="button" value="Logout"/>
+        </f:facet>
+    </p:menubar>
+</h:form >
+   
+	<h:panelGrid columns="1" cellpadding="5">
+	    <p:commandButton value="Agregar Producto" type="button" onclick="PF('dlg2').show();" />  
+	</h:panelGrid>
+
+    <h:form id="formTabla">
+     <p:dialog header="Agregar Producto" widgetVar="dlg2" modal="true">
+	    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+	    <p:outputLabel for="@next" value="NOMBRE PRODUCTO:" />
+		<p:inputText id="nombreProducto" value="#{masProductos.nombreProducto}" style="width:250px"/>
+        <p:outputLabel for="@next" value="MARCA:" />
+        <p:selectOneMenu id="marca" style="width:250px" value="#{masProductos.marca}">
+            <f:selectItem itemLabel="Selecciona una marca" itemValue="" />
+            <f:selectItem itemLabel="Black_and_Decker" itemValue="Black_and_Decker" />
+            <f:selectItem itemLabel="Bosch" itemValue="Bosch" />
+            <f:selectItem itemLabel="Bosch_azul" itemValue="Bosch_azul" />
+            <f:selectItem itemLabel="DeWALT" itemValue="DeWALT" />
+            <f:selectItem itemLabel="Einhell" itemValue="Einhell" />
+            <f:selectItem itemLabel="Evolution" itemValue="Evolution" />
+            <f:selectItem itemLabel="Festool" itemValue="Festool" />
+            <f:selectItem itemLabel="Hilti" itemValue="Hilti" />
+            <f:selectItem itemLabel="Hitachi_HiKoki" itemValue="Hitachi_HiKoki" />
+            <f:selectItem itemLabel="Imer" itemValue="Imer" />
+            <f:selectItem itemLabel="Makita" itemValue="Makita" />
+            <f:selectItem itemLabel="Metabo" itemValue="Metabo" />
+            <f:selectItem itemLabel="Milwaukee" itemValue="Milwaukee" />
+            <f:selectItem itemLabel="Proxxon" itemValue="Proxxon" />
+            <f:selectItem itemLabel="Ridgid" itemValue="Ridgid" />
+            <f:selectItem itemLabel="Spit" itemValue="Spit" />
+            <f:selectItem itemLabel="Telwin" itemValue="Telwin" />
+            <f:selectItem itemLabel="Virutex" itemValue="Virutex" />
+            <f:selectItem itemLabel="otra_marca" itemValue="otra_marca" />
+            <f:facet name="footer">
+               <p:separator />
+               <h:outputText value="19 MARCAS" style="font-weight:bold;"/>
+            </f:facet>
+        </p:selectOneMenu>
+        
+        <p:outputLabel for="@next" value="CATEGORIA:" />
+        <p:selectOneMenu id="categoria" style="width:250px" value="#{masProductos.categoria}">
+            <f:selectItem itemLabel="Selecciona una categoria" itemValue="" />
+            <f:selectItem itemLabel="Herramientas_electricas" itemValue="Herramientas_electricas" />
+            <f:selectItem itemLabel="Herramientas_manuales" itemValue="Herramientas_manuales" />
+            <f:selectItem itemLabel="Fontaneria" itemValue="Fontaneria" />
+            <f:selectItem itemLabel="Calefaccion" itemValue="Calefaccion" />
+            <f:selectItem itemLabel="Electricidad" itemValue="Electricidad" />
+            <f:selectItem itemLabel="Pegamentos" itemValue="Pegamentos" />
+            <f:selectItem itemLabel="Accesorios_coches" itemValue="Accesorios_coches" />
+            <f:selectItem itemLabel="Tornilleria" itemValue="Tornilleria" />
+            <f:selectItem itemLabel="Cerraduras" itemValue="Cerraduras" />
+            <f:selectItem itemLabel="Sin_definir" itemValue="Sin_definir" />
+            <f:facet name="footer">
+               <p:separator />
+               <h:outputText value="19 CATEGORIAS" style="font-weight:bold;"/>
+            </f:facet>
+        </p:selectOneMenu>
+        <p:outputLabel for="@next" value="PRECIO:" />
+		<p:inputText id="precio" value="#{masProductos.precio}" style="width:250px"/>
+		<h:commandButton id="idGuardar" value="Agregar" update=":formTabla:tablaProductos" action="#{masProductos.crearProducto()}"/>
+        </h:panelGrid>
+	</p:dialog> 
+	
+        <p:dataTable id="tablaProductos" var="product" value="#{dtProducto.producto}" rowKey="#{producto.iden_producto}"
+                     selection="#{dtProducto.productoSeleccionado}" selectionMode="single">
+            <f:facet name="header">
+                Lista de Productos
+            </f:facet>
+
+            <p:column headerText="ID">
+                <h:outputText value="#{product.iden_producto}" />
+            </p:column>
+            <p:column headerText="NombreProducto">
+                <h:outputText value="#{product.nombre_producto}" />
+            </p:column>
+            <p:column headerText="Marca">
+                <h:outputText value="#{product.marca}" />
+            </p:column>
+            <p:column headerText="Categoria">
+                <h:outputText value="#{product.categoria}" />
+            </p:column>
+            <p:column headerText="Precio">
+                <h:outputText value="#{product.precio}" />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</div>
+    </h:body>
+</html>

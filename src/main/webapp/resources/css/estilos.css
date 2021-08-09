@@ -1,0 +1,33 @@
+
+.body{
+	background:none repeat scroll 0 0 #7695e2;
+}
+
+.menubar{
+	background:none repeat scroll 0 0 #6fdcab;
+}
+.table
+{
+	border-collapse:collapse;
+	border-bottom:2px solid black;
+	font-family:fantasy;
+}
+
+.table-header{
+	border-bottom:2px solid black;
+	background:none repeat scroll 0 0 #00fcff;
+	padding:5px;
+}
+
+.table-odd-row
+{
+	border-top:1px solid black;
+	text-align:center;
+}
+
+.table-even-row
+{
+	border-top:1px solid black;
+	background: none repeat scroll 0 0 #ff9200;
+	text-align:center;
+}
